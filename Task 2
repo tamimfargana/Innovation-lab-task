@@ -1,0 +1,129 @@
+Here's a full breakdown of Tasks 1–3, Quiz answers, and a Menu-Driven Calculator Post-Class Assignment, all in JavaScript format. You can copy this into a .js file and run it in a browser console or Node.js.
+
+
+---
+
+ Task 1: Conditional Statements Practice
+
+let age = 20;
+if (age >= 18) {
+  console.log("You are eligible to vote.");
+}
+
+let number = -5;
+if (number >= 0) {
+  console.log("Number is positive.");
+} else {
+  console.log("Number is negative.");
+}
+
+let score = 85;
+if (score >= 90) {
+  console.log("Grade: A");
+} else if (score >= 75) {
+  console.log("Grade: B");
+} else {
+  console.log("Grade: C or below");
+}
+
+let choice = 2;
+switch (choice) {
+  case 1:
+    console.log("You selected Add");
+    break;
+  case 2:
+    console.log("You selected Subtract");
+    break;
+  case 3:
+    console.log("You selected Multiply");
+    break;
+  case 4:
+    console.log("You selected Divide");
+    break;
+  default:
+    console.log("Invalid choice");
+}
+
+
+---
+
+Task 2: Loop Control Practice
+
+// While Loop (1 to 10)
+let i = 1;
+while (i <= 10) {
+  console.log(i);
+  i++;
+}
+
+// Do-While Loop (until correct password)
+let input;
+do {
+  input = prompt("Enter password (type '1234'):");
+} while (input !== "1234");
+console.log("Access granted!");
+
+// For Loop (Sum of first N natural numbers)
+let sum = 0;
+let N = 10;
+for (let i = 1; i <= N; i++) {
+  sum += i;
+}
+console.log("Sum of first 10 natural numbers:", sum);
+
+// Nested Loops (Multiplication table 1 to 5)
+for (let i = 1; i <= 5; i++) {
+  console.log("Table of", i);
+  for (let j = 1; j <= 10; j++) {
+    console.log(`${i} x ${j} = ${i * j}`);
+  }
+}
+
+
+ Task 3: Break and Continue Usage
+
+for ( num = 10; num <= 20; num++) {
+   isPrime = true;
+  for (div = 2; div <= Math.sqrt(num); div++) {
+    if (num % div === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) {
+    console.log("First prime number:", num);
+    break;
+  }
+}
+
+// Continue: Print only odd numbers between 1 and 10
+for (let i = 1; i <= 10; i++) {
+  if (i % 2 === 0) continue;
+  console.log("Odd:", i);
+}
+
+
+Second Quiz Answers
+
+1. Difference between if and else-if:
+
+if is the initial condition check;
+
+else if is for additional conditions when the first if is false.
+
+
+
+2. When to use switch over multiple if-else:
+
+Use switch when checking one variable against many exact values.
+
+3. Predict output with break inside a loop
+loop steps immediately at the break
+
+4.difference between while and do while
+while check condition before loop starts
+
+5.what happen if continue inside a loop
+skip remaining statement in the iteration and goes next level
+
+ 
