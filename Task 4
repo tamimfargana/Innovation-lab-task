@@ -1,0 +1,217 @@
+Task 1: Defining and Calling Functions
+
+// 1. Simple function with fixed parameters
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+greet("Alice");
+
+// 2. Function with arbitrary arguments using 'arguments' keyword
+function sumAll() {
+  let total = 0;
+  for (let i = 0; i < arguments.length; i++) {
+    total += arguments[i];
+  }
+  console.log("Sum using arguments:", total);
+}
+sumAll(1, 2, 3, 4, 5);
+
+// 3. Function with rest operator (...)
+function multiplyAll(...nums) {
+  let result = 1;
+  for (let num of nums) {
+    result *= num;
+  }
+  console.log("Product using rest operator:", result);
+}
+multiplyAll(2, 3, 4);
+
+
+---
+
+ Task 2: Function Expressions & Arrow Functions
+
+// 1. Function Declaration
+function square(x) {
+  return x * x;
+}
+console.log("Square using declaration:", square(5));
+
+// 2. Function Expression
+const squareExpr = function(x) {
+  return x * x;
+};
+console.log("Square using expression:", squareExpr(6));
+
+// 3. Arrow Function
+const squareArrow = x => x * x;
+console.log("Square using arrow function:", squareArrow(7));
+
+// 4. Difference in `this` (basic intro)
+const obj = {
+  value: 10,
+  regularFunc: function () {
+    console.log("Regular function this.value:", this.value);
+  },
+  arrowFunc: () => {
+    // Arrow function does not bind its own `this`
+    console.log("Arrow function this.value:", this.value);
+  }
+};
+obj.regularFunc(); // prints 10
+obj.arrowFunc();   // prints undefined or global this value
+
+
+---
+
+Task 3: Callback Functions & Scope
+
+// 1. Callback function
+function fetchData(callback) {
+  console.log("Fetching data...");
+  setTimeout(() => {
+    console.log("Data fetched.");
+    callback();
+  }, 1000);
+}
+
+function displayData() {
+  console.log("Displaying data...");
+}
+
+fetchData(displayData);
+
+// 2. Scope Demonstration
+var globalVar = "I'm global"; // Global scope
+
+function scopeDemo() {
+  var localVar = "I'm local"; // Function scope
+  let blockVar = "I'm block scoped (let)";
+  const constVar = "I'm constant in block";
+
+  if (true) {
+    var functionScoped = "Still accessible in function";
+    let blockOnly = "Block only (let)";
+    const constBlock = "Block only (const)";
+    console.log(blockOnly);   // OK
+    console.log(constBlock);  // OK
+  }
+
+  console.log(globalVar);        // OK
+  console.log(localVar);         // OK
+  console.log(functionScoped);   // OK
+  // console.log(blockOnly);    // Error: blockOnly is not defined
+}
+scopeDemo();
+
+
+
+
+ Quiz Answers
+
+1. Arrow function syntax:
+
+
+
+const add = (a, b) => a + b;
+
+2. Callback function:
+
+
+
+A function passed into another function to be called later.
+
+Useful for asynchronous tasks like data fetching, event handling, etc.
+
+
+3. Function expression vs declaration:
+
+
+
+Declaration is hoisted; can be called before it's defined.
+
+Expression is not hoisted; must be defined before use.
+
+
+4. Global vs Local Scope:
+
+
+
+Global: Declared outside functions; accessible anywhere.
+
+Local: Declared inside functions; accessible only inside that function.
+
+
+
+
+
+Post-Class Assignment: Task Manager Project
+
+ Task array to store tasks
+const tasks = [];
+
+1. addTask function with callback
+function addTask(task, callback) {
+  tasks.push(task);
+  console.log(`Task "${task}" added.`);
+  callback(); // invoke callback after adding
+}
+
+2. Callback to display all tasks
+const showTasks = () => {
+  console.log("Current Tasks:");
+  tasks.forEach((task, index) => {
+    console.log(`${index + 1}. ${task}`);
+  });
+};
+
+3. Add multiple tasks using rest operator
+const addMultipleTasks = (...taskList) => {
+  taskList.forEach(task => tasks.push(task));
+  console.log(`${taskList.length} tasks added.`);
+  showTasks();
+};
+
+ 4. Variable Scope Demonstration
+const managerName = "Alice"; // global
+
+function taskScopeDemo() {
+  var totalTasks = tasks.length; // function scope
+  if (totalTasks > 0) {
+    let recentTask = tasks[tasks.length - 1]; // block scope
+    console.log(`Last task added: ${recentTask}`);
+  }
+  console.log(`Total tasks: ${totalTasks}`);
+  console.log(recentTask); 
+}
+
+ Test calls
+addTask("Buy groceries", showTasks);
+addTask("Call friend", showTasks);
+addMultipleTasks("Read book", "Clean room", "Pay bills");
+taskScopeDemo();
+
+
+
+ Sample Output:
+
+Task "Buy groceries" added.
+Current Tasks:
+1. Buy groceries
+
+Task "Call friend" added.
+Current Tasks:
+1. Buy groceries
+2. Call friend
+
+3 tasks added.
+Current Tasks:
+1. Buy groceries
+2. Call friend
+3. Read book
+4. Clean room
+5. Pay bills
+
+Last task added: Pay bills
+Total tasks: 5
+
