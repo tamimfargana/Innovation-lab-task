@@ -1,0 +1,73 @@
+Task 1: Math & String Built-in Functions
+
+
+A. Generate random numbers and round
+
+
+let num = Math.random() * 100;
+console.log("Random number:", num);
+console.log("Rounded up:", Math.ceil(num));
+console.log("Rounded down:", Math.floor(num));
+console.log("Rounded:", Math.round(num));
+
+B. String manipulations
+let str = "hello world";
+console.log(str.toUpperCase()); 
+console.log(str.substring(0, 5)); 
+console.log(str.includes("world")); 
+console.log(str.replace("world", "JS")); 
+
+
+✅ Task 2: Array Creation and Basic Operations
+
+
+let fruits = ["apple", "banana", "mango"];
+console.log(fruits.length); 
+fruits.push("orange"); 
+fruits.pop(); 
+fruits.unshift("grape"); 
+fruits.shift(); 
+console.log(fruits); 
+
+
+✅ Task 3: Array Iteration and Loops
+let nums = [2, 4, 6, 8];
+nums.forEach((num) => {
+  console.log("forEach value:", num);
+});
+let squares = nums.map((n) => n * n);
+console.log("Squares:", squares);
+for (let index in nums) {
+  console.log("for-in index:", index, "value:", nums[index]);
+}
+for (let value of nums) {
+  console.log("for-of value:", value);
+}
+
+
+✅ Post-Class Project: Student Grades Processor
+
+let students = [
+  { name: "alice", score: 87.4 },
+  { name: "bob", score: 59.2 },
+  { name: "charlie", score: 72.9 }
+];
+students.forEach(student => {
+  student.score = Math.round(student.score);
+});
+students = students.map(student => {
+  let capitalized = student.name[0].toUpperCase() + student.name.slice(1);
+  return { ...student, name: capitalized };
+});
+students.forEach(student => {
+  console.log(`${student.name}: ${student.score}`);
+});
+let statusList = students.map(student => {
+  return student.score >= 60 ? "Pass" : "Fail";
+});
+console.log("Statuses:", statusList);
+for (let student of students) {
+  if (student.score >= 60) {
+    console.log(`Congratulations ${student.name} for passing!`);
+  }
+}
