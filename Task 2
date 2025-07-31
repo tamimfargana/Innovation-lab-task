@@ -1,7 +1,6 @@
 Here's a full breakdown of Tasks 1–3, Quiz answers, and a Menu-Driven Calculator Post-Class Assignment, all in JavaScript format. You can copy this into a .js file and run it in a browser console or Node.js.
 
 
----
 
  Task 1: Conditional Statements Practice
 
@@ -43,9 +42,6 @@ switch (choice) {
   default:
     console.log("Invalid choice");
 }
-
-
----
 
 Task 2: Loop Control Practice
 
