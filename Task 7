@@ -1,0 +1,169 @@
+ Task 1: Destructuring, Notation & Iteration
+: // Example object with nested properties
+const user = {
+  id: 101,
+  name: "Alice",
+  address: {
+    city: "New York",
+    zip: 10001
+  }
+};
+
+// Destructuring with nested object
+const { name, address: { city } } = user;
+console.log(name);  // tamim
+console.log(city);  // New York
+
+// Access properties using dot and bracket notation
+console.log(user.address.zip);     // Dot notation
+console.log(user["address"]["zip"]); // Bracket notation
+
+// Iterating through object
+for (let key in user) {
+  console.log(`${key}: ${user[key]}`);
+}
+
+const arr = [10, 20, 30];
+const [first, second] = arr;
+console.log(first, second); // 10, 20
+
+
+ Task 2: Complex Data & Parameter Handling
+// Array of objects
+const products = [
+  { id: 1, name: "Laptop", price: 500 },
+  { id: 2, name: "Phone", price: 300 }
+];
+
+// Access nested data
+console.log(products[0].name);  // Laptop
+
+// Rest parameter in function
+function sum(...numbers) {
+  return numbers.reduce((a, b) => a + b, 0);
+}
+console.log(sum(1, 2, 3, 4));  // 10
+
+// Spread operator to clone or combine
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5];
+const combined = [...arr1, ...arr2];
+console.log(combined); // [1, 2, 3, 4, 5]
+
+const clonedProduct = { ...products[0] };
+console.log(clonedProduct);
+
+// Parameter destructuring in function
+function printProduct({ id, name, price }) {
+  console.log(`ID: ${id}, Name: ${name}, Price: ${price}`);
+}
+printProduct(products[1]);
+[8/27, 7:34 PM] Vinisha: Task 3: Function Context & Advanced Calls
+[8/27, 7:34 PM] Vinisha: const person = {
+  firstName: "John",
+  lastName: "Doe",
+};
+
+function greet(greeting) {
+  console.log(`${greeting}, ${this.firstName} ${this.lastName}`);
+}
+
+// call() - pass arguments one by one
+greet.call(person, "Hello");
+
+// apply() - pass arguments as array
+greet.apply(person, ["Hi"]);
+
+// bind() - create a new function with bound context
+const boundGreet = greet.bind(person);
+boundGreet("Good morning");
+Sample Quiz Practice
+
+Q: How do you destructure an object with nested properties?
+[8/27, 7:34 PM] Vinisha: const employee = { id: 1, details: { dept: "IT", location: "NY" } };
+const { details: { dept, location } } = employee;
+console.log(dept, location); // IT NY
+[8/27, 7:36 PM] Vinisha: Project
+[8/27, 7:36 PM] Vinisha: // Contact Management Module
+
+// Step 1: Create an array of contact objects
+let contacts = [
+  {
+    name: "Alice",
+    phone: "123-456-7890",
+    email: "alice@example.com",
+    display() {
+      console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`);
+    }
+  },
+  {
+    name: "Bob",
+    phone: "987-654-3210",
+    email: "bob@example.com",
+    display() {
+      console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`);
+    }
+  }
+];
+
+// Step 2: Destructuring inside a function
+function printContact({ name, phone, email }) {
+  console.log(`(Destructured) Name: ${name}, Phone: ${phone}, Email: ${email}`);
+}
+printContact(contacts[0]);
+
+// Step 3: Access properties using dot and bracket notation
+console.log("Dot notation:", contacts[0].name);
+console.log("Bracket notation:", contacts[1]["email"]);
+
+// Step 4: Iterate through contacts
+console.log("\nAll Contacts:");
+for (let contact of contacts) {
+  contact.display();
+}
+
+// Step 5: Use rest parameters to add multiple contacts
+function addContacts(...newContacts) {
+  contacts.push(...newContacts);
+}
+addContacts(
+  { name: "Charlie", phone: "555-555-5555", email: "charlie@example.com", display() { console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`); } },
+  { name: "Diana", phone: "666-666-6666", email: "diana@example.com", display() { console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`); } }
+);
+
+console.log("\nAfter Adding New Contacts:");
+contacts.forEach(c => c.display());
+
+// Step 6: Spread operator to merge contact arrays
+let moreContacts = [
+  { name: "Eve", phone: "777-777-7777", email: "eve@example.com", display() { console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`); } }
+];
+
+let mergedContacts = [...contacts, ...moreContacts];
+console.log("\nMerged Contacts:");
+mergedContacts.forEach(c => c.display());
+
+// Step 7: Demonstrate call(), apply(), bind()
+let externalContact = {
+  name: "Frank",
+  phone: "888-888-8888",
+  email: "frank@example.com"
+};
+
+function showContactInfo(prefix) {
+  console.log(`${prefix} Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`);
+}
+
+// call()
+showContactInfo.call(externalContact, "Using call():");
+
+// apply()
+showContactInfo.apply(externalContact, ["Using apply():"]);
+
+// bind()
+const boundShow = showContactInfo.bind(externalContact);
+boundShow("Using bind():");
+
+
+
+
